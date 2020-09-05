@@ -1,7 +1,7 @@
 package video
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/xfrr/goffmpeg/transcoder"
 )
@@ -15,13 +15,17 @@ func OptimVideoH264(trans *transcoder.Transcoder, inputPath, outputPath string) 
 
 	trans.MediaFile().SetVideoCodec("libx264")
 
+	log.Println("start compress: ", inputPath)
+
 	done := trans.Run(true)
 
-	progress := trans.Output()
+	log.Println("finish compress: ", inputPath)
 
-	for msg := range progress {
-		fmt.Println(msg)
-	}
+	//progress := trans.Output()
+	//
+	//for msg := range progress {
+	//	log.Println(msg)
+	//}
 
 	err = <-done
 

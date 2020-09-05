@@ -46,9 +46,9 @@ func (t *TranscoderInstance) Optim(fPath, outPath string) (err error) {
 		case mp4Suffix:
 			err = video.OptimVideoH264(t.Trans, fPath, outPath)
 		case mp3Suffix:
-		err = audio.OptimAudio(t.Trans, fPath, outPath)
-	case pngSuffix, jpegSuffix, jpgSuffix:
-		err = image.OptimImage(fPath, outPath)
+			err = audio.OptimAudio(t.Trans, fPath, outPath)
+		case pngSuffix, jpegSuffix, jpgSuffix:
+			err = image.OptimImage(fPath, outPath)
 	}
 	return
 }

@@ -1,7 +1,7 @@
 package audio
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/xfrr/goffmpeg/transcoder"
 )
@@ -19,13 +19,17 @@ func OptimAudio(trans *transcoder.Transcoder, inputPath, outputPath string) erro
 
 	trans.MediaFile().SetAudioBitRate(audioBitRate)
 
+	log.Println("start compress: ", inputPath)
+
 	done := trans.Run(true)
 
-	progress := trans.Output()
-
-	for msg := range progress {
-		fmt.Println(msg)
-	}
+	log.Println("finish compress: ", inputPath)
+	//
+	//progress := trans.Output()
+	//
+	//for msg := range progress {
+	//	log.Println(msg)
+	//}
 
 	err = <-done
 
