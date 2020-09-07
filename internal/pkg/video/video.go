@@ -20,12 +20,13 @@ func OptimVideoH264(trans *transcoder.Transcoder, inputPath, outputPath string) 
 	done := trans.Run(true)
 
 	log.Println("finish compress: ", inputPath)
+	log.Println("ffmpeg with args: ", trans.GetCommand())
 
-	//progress := trans.Output()
-	//
-	//for msg := range progress {
-	//	log.Println(msg)
-	//}
+	progress := trans.Output()
+
+	for msg := range progress {
+		log.Println(msg)
+	}
 
 	err = <-done
 
